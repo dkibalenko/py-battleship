@@ -46,9 +46,9 @@ class Battleship:
             for column in range(ship.start[1], ship.end[1] + 1)
         }
 
-    def fire(self, location: tuple) -> str:
+    def fire(self, location: tuple[int, int]) -> str:
         if location in self.field:
-            ship = self.field[*location]
+            ship = self.field[location]
             ship.fire(*location)
             if ship.is_drowned:
                 return "Sunk!"
@@ -67,7 +67,7 @@ class Battleship:
             decks_count[decks] += 1
 
         if not decks_count == {1: 4, 2: 3, 3: 2, 4: 1}:
-            raise ValueError("There should exactly: \n"
+            raise ValueError("There should exactly be: \n"
                              "4 single-deck ships\n"
                              "3 double-deck ships\n"
                              "2 three-deck ships\n"
